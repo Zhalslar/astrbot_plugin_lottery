@@ -1,6 +1,7 @@
 import json
 import os
 from typing import TYPE_CHECKING
+
 from astrbot.api import logger
 
 if TYPE_CHECKING:

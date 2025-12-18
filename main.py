@@ -1,15 +1,16 @@
-from astrbot.api.star import Context, Star, register
-from astrbot.core.config.astrbot_config import AstrBotConfig
-from astrbot.api import logger
-from astrbot.api.event import filter
-from astrbot.core.platform.astr_message_event import AstrMessageEvent
-from astrbot.core.star.star_tools import StarTools
-from .utils import get_nickname
-from .core.lottery import LotteryManager, LotteryPersistence, PrizeLevel
 import re
 
+from astrbot.api import logger
+from astrbot.api.event import filter
+from astrbot.api.star import Context, Star
+from astrbot.core.config.astrbot_config import AstrBotConfig
+from astrbot.core.platform.astr_message_event import AstrMessageEvent
+from astrbot.core.star.star_tools import StarTools
 
-@register("astrbot_plugin_lottery", "Zhalslar", "群聊抽奖插件", "...")
+from .core.lottery import LotteryManager, LotteryPersistence, PrizeLevel
+from .utils import get_nickname
+
+
 class LotteryPlugin(Star):
     def __init__(self, context: Context, config: AstrBotConfig):
         super().__init__(context)

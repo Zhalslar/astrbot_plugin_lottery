@@ -1,9 +1,10 @@
 import random
 from datetime import datetime
-from typing import Dict, Optional, Tuple
 from enum import Enum
+
 from astrbot.api import logger
 from astrbot.core.config.astrbot_config import AstrBotConfig
+
 from .data import LotteryPersistence
 
 
@@ -114,7 +115,7 @@ class LotteryManager:
     """抽奖管理类"""
 
     def __init__(self, persistence: LotteryPersistence, config: AstrBotConfig):
-        self.activities: Dict[str, LotteryActivity] = {}
+        self.activities: dict[str, LotteryActivity] = {}
         prize_config = config["default_prize_config"]
         self.template = {PrizeLevel[k.upper()]: v for k, v in prize_config.items()}
         # 数据持久化对象
@@ -137,7 +138,7 @@ class LotteryManager:
         self.persistence.save(self)
         return True
 
-    def start_activity(self, group_id: str) -> Tuple[bool, str]:
+    def start_activity(self, group_id: str) -> tuple[bool, str]:
         """开启抽奖活动"""
         if self.activities.get(group_id) and self.activities[group_id].is_active:
             return False, "该群已有进行中的抽奖活动"
@@ -149,7 +150,7 @@ class LotteryManager:
 
     def draw_lottery(
         self, group_id: str, user_id: str, nickname:str
-    ) -> Tuple[str, Optional[PrizeLevel]]:
+    ) -> tuple[str, PrizeLevel | None]:
         """抽奖"""
         # 检查活动是否存在且激活
         if group_id not in self.activities:
@@ -197,7 +198,7 @@ class LotteryManager:
                     return lvl
         return PrizeLevel.NONE
 
-    def stop_activity(self, group_id: str) -> Tuple[bool, str]:
+    def stop_activity(self, group_id: str) -> tuple[bool, str]:
         """停止抽奖活动"""
         if group_id not in self.activities:
             return False, "该群没有抽奖活动"
@@ -222,7 +223,7 @@ class LotteryManager:
         logger.debug(f"[Lottery] 群 {group_id} 活动已彻底删除")
         return True
 
-    def get_status_and_winners(self, group_id: str) -> Optional[dict]:
+    def get_status_and_winners(self, group_id: str) -> dict | None:
         activity = self.activities.get(group_id)
         if not activity:
             return None

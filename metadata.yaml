@@ -1,7 +1,7 @@
-name: astrbot_plugin_lottery # 这是你的插件的唯一识别名。
+name: astrbot_plugin_lottery
 display_name: 抽奖插件
-desc: 抽奖插件，可自定义抽奖活动的概率、奖品、奖品数量  # 插件简短描述
-help: 重启 # 插件的帮助信息
-version: v1.0.4 # 插件版本号。格式：v1.1.1 或者 v1.1
-author: Zhalslar # 作者
-repo: https://github.com/Zhalslar/astrbot_plugin_lottery # 插件的仓库地址
+desc: 抽奖插件，可自定义抽奖活动的概率、奖品、奖品数量
+help: 略
+version: v1.0.4
+author: Zhalslar
+repo: https://github.com/Zhalslar/astrbot_plugin_lottery
